@@ -10,6 +10,59 @@ def callMenu():
 
     return int(input("Escolha uma opção: "))
 
+def calc_qe(operador, q1, valor_escalar):
+    if operador == '+':
+        a = q1.a + float(valor_escalar)
+        b = q1.b + float(valor_escalar)
+        c = q1.c + float(valor_escalar)
+        d = q1.d + float(valor_escalar)
+    elif operador == '-':
+        a = q1.a - float(valor_escalar)
+        b = q1.b - float(valor_escalar)
+        c = q1.c - float(valor_escalar)
+        d = q1.d - float(valor_escalar)
+    elif operador == '*':
+        a = q1.a * float(valor_escalar)
+        b = q1.b * float(valor_escalar)
+        c = q1.c * float(valor_escalar)
+        d = q1.d * float(valor_escalar)
+    elif operador == "/":
+        a = q1.a / float(valor_escalar)
+        b = q1.b / float(valor_escalar)
+        c = q1.c / float(valor_escalar)
+        d = q1.d / float(valor_escalar)
+    
+    return Quaternion('r', a, b, c, d)
+        
+
+#função para executar operações entre dois quaternions
+def calc_qq(operador, q1, q2):
+    if operador == '+':
+        a = q1.a + q2.a
+        b = q1.b + q2.b
+        c = q1.c + q2.c
+        d = q1.d + q2.d
+
+    elif operador == '-':
+        a = q1.a - q2.a
+        b = q1.b - q2.b
+        c = q1.c - q2.c
+        d = q1.d - q2.d
+
+    elif operador == '*':
+        a = q1.a * q2.a
+        b = q1.b * q2.b
+        c = q1.c * q2.c
+        d = q1.d * q2.d
+        
+    elif operador == "/":
+        a = q1.a / q2.a
+        b = q1.b / q2.b
+        c = q1.c / q2.c
+        d = q1.d / q2.d
+    
+    return Quaternion('r', a, b, c, d)
+
 def main():
     quaternions = []
     
@@ -27,7 +80,6 @@ def main():
 
             print("Quaternion definido!")
             print(quaternions[-1].__str__() + "\n")
-
         elif choice == 2:
             if not quaternions:
                 print("\n")
@@ -55,16 +107,28 @@ def main():
                 print("\n")
                 print("Defina pelo menos um quaternion primeiro.")
             else:
-                index = int(input("Digite o índice do quaternion: "))
-                if 0 <= index < len(quaternions):
-                    print("Operação V:")
-                    p = input("Digite o valor de p: ")
-                    q = input("Digite o valor de q: ")
-                    result = f"V({p}) + {quaternions[index].scalar}*{q} + {quaternions[index].i}i + {quaternions[index].j}j"
-                    print(f"Resultado: {result}")
-                else:
-                    print("Índice inválido.")
+                print("\n")
+                operacao = input("Digite a equação a ser realizada: ")
+                operadores = {"*","+","/","-","^"}
+
+                #reconhecendo quaternions dentro da equação
+                quater_equacao = []
+                
+                for letra in list(operacao):
+                    for quaternion in quaternions :
+                        if letra == quaternion.nome :
+                            quater_equacao.append(quaternion)
+                        elif letra in operadores:
+                            operador = letra
+                
+                if quater_equacao.__sizeof__ > 1 :
+                    resultado = calc_qe(operador, quater_equacao[0], quater_equacao[1])
+                
+                print("\n")
+                print(resultado.__str__() + "\n")
+                
         elif choice == 5:
+            print("\n")
             print("Saindo...")
             break
         else:
