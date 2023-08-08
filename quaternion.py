@@ -21,8 +21,6 @@ class Quaternion:
         c = int(self.c) if self.c.is_integer() else self.c
         d = int(self.d) if self.d.is_integer() else self.d
 
-
-
         a_str = a
         b_str = f"- {b*-1}" if b < 0 else f"+ {b}"
         c_str = f"- {c*-1}" if c < 0 else f"+ {c}"

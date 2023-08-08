@@ -1,4 +1,5 @@
 from quaternion import Quaternion
+from operacao import Operacao
 
 def callMenu():
     print("\nMenu de Opções:")
@@ -9,59 +10,6 @@ def callMenu():
     print("5. Sair")
 
     return int(input("Escolha uma opção: "))
-
-def calc_qe(operador, q1, valor_escalar):
-    if operador == '+':
-        a = q1.a + float(valor_escalar)
-        b = q1.b + float(valor_escalar)
-        c = q1.c + float(valor_escalar)
-        d = q1.d + float(valor_escalar)
-    elif operador == '-':
-        a = q1.a - float(valor_escalar)
-        b = q1.b - float(valor_escalar)
-        c = q1.c - float(valor_escalar)
-        d = q1.d - float(valor_escalar)
-    elif operador == '*':
-        a = q1.a * float(valor_escalar)
-        b = q1.b * float(valor_escalar)
-        c = q1.c * float(valor_escalar)
-        d = q1.d * float(valor_escalar)
-    elif operador == "/":
-        a = q1.a / float(valor_escalar)
-        b = q1.b / float(valor_escalar)
-        c = q1.c / float(valor_escalar)
-        d = q1.d / float(valor_escalar)
-    
-    return Quaternion('r', a, b, c, d)
-        
-
-#função para executar operações entre dois quaternions
-def calc_qq(operador, q1, q2):
-    if operador == '+':
-        a = q1.a + q2.a
-        b = q1.b + q2.b
-        c = q1.c + q2.c
-        d = q1.d + q2.d
-
-    elif operador == '-':
-        a = q1.a - q2.a
-        b = q1.b - q2.b
-        c = q1.c - q2.c
-        d = q1.d - q2.d
-
-    elif operador == '*':
-        a = q1.a * q2.a
-        b = q1.b * q2.b
-        c = q1.c * q2.c
-        d = q1.d * q2.d
-        
-    elif operador == "/":
-        a = q1.a / q2.a
-        b = q1.b / q2.b
-        c = q1.c / q2.c
-        d = q1.d / q2.d
-    
-    return Quaternion('r', a, b, c, d)
 
 def main():
     quaternions = []
@@ -110,8 +58,12 @@ def main():
             else:
                 print("\n")
                 operacao = input("Digite a equação a ser realizada: ")
-               
-                
+                partes = operacao.split()
+                contador = 0
+
+                for parte in partes:
+                    if contador == 0:
+                        if 
         elif choice == 5:
             print("\n")
             print("Saindo...")
