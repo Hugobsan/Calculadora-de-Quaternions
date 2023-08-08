@@ -70,6 +70,7 @@ def main():
         choice = callMenu()
         
         if choice == 1:
+            print("\n")
             nome  = input("Como chamaremos o novo quaternion? ")
             a = float(input("Digite o valor de a: "))
             b = float(input("Digite o valor de bi: "))
@@ -109,23 +110,7 @@ def main():
             else:
                 print("\n")
                 operacao = input("Digite a equação a ser realizada: ")
-                operadores = {"*","+","/","-","^"}
-
-                #reconhecendo quaternions dentro da equação
-                quater_equacao = []
-                
-                for letra in list(operacao):
-                    for quaternion in quaternions :
-                        if letra == quaternion.nome :
-                            quater_equacao.append(quaternion)
-                        elif letra in operadores:
-                            operador = letra
-                
-                if quater_equacao.__sizeof__ > 1 :
-                    resultado = calc_qe(operador, quater_equacao[0], quater_equacao[1])
-                
-                print("\n")
-                print(resultado.__str__() + "\n")
+               
                 
         elif choice == 5:
             print("\n")
