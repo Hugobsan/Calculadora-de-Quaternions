@@ -31,16 +31,33 @@ class Quaternion:
     # Calcula o módulo do quaternion
     def modulo(self):
         return math.sqrt(self.a**2 + self.b**2 + self.c**2 + self.d**2)
+    
+    # Calcular o escalar
+    def escalar(self):
+        return self.a
+    
+    # Calcular o vetorial
+    def vetorial(self):
+        return Quaternion('v'+self.nome, 0, self.b, self.c, self.d)
 
     # Calcula o conjugado do quaternion
     def conjugado(self):
-        return Quaternion(self.nome+'*', self.a, -self.b, -self.c, -self.d)
+        return Quaternion('c'+self.nome, self.a, -self.b, -self.c, -self.d)
     
     def q_multi_i(self):
-        return Quaternion(self.nome+'*i', -self.b, self.a, self.d, -self.c)
+        return Quaternion(self.nome+'i', -self.b, self.a, self.d, -self.c)
 
     def q_multi_j(self):
-        return Quaternion(self.nome+'*j', -self.c, -self.d, self.a, self.b)
+        return Quaternion(self.nome+'j', -self.c, -self.d, self.a, self.b)
     
     def q_multi_k(self):
-        return Quaternion(self.nome+'*k', -self.d, self.c, -self.b, self.a)
+        return Quaternion(self.nome+'k', -self.d, self.c, -self.b, self.a)
+    
+    def i_multi_q(self):
+        return Quaternion('i'+self.nome, -self.b, self.a, -self.d, self.c)
+    
+    def j_multi_q(self):
+        return Quaternion('j'+self.nome, -self.c, self.d, self.a, -self.b)
+    
+    def k_multi_q(self):
+        return Quaternion('k'+self.nome, -self.d, -self.c, self.b, self.a)

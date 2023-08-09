@@ -22,17 +22,35 @@ def main():
         choice = callMenu()
         
         if choice == 1:
+            reserved_keys = ['i', 'j', 'k', 'm', 'c', 'v']
             print("\n")
             nome  = input("Como chamaremos o novo quaternion? ")
+            if nome in reserved_keys:
+                print("\n")
+                print("Nome inválido. Escolha outro nome.")
+                continue
             a = float(input("Digite o valor de a: "))
             b = float(input("Digite o valor de bi: "))
             c = float(input("Digite o valor de cj: "))
             d = float(input("Digite o valor de dk: "))
             
-            quaternions.append(Quaternion(nome, a, b, c, d))
+            new_q = Quaternion(nome, a, b, c, d)
+            
+            quaternions.append(new_q)
+            quaternions.append(new_q.q_multi_i())
+            quaternions.append(new_q.q_multi_j())
+            quaternions.append(new_q.q_multi_k())
+            quaternions.append(new_q.i_multi_q())
+            quaternions.append(new_q.j_multi_q())
+            quaternions.append(new_q.k_multi_q())
+            quaternions.append(new_q.conjugado())
+            quaternions.append(new_q.vetorial())
+
+
             print("\n")
-            print("Quaternion definido:")
-            print("\n" + quaternions[-1].__str__() + "\n")
+            print("Quaternions definidos:")
+            print("\n" + new_q.__str__() + "\n")
+
         elif choice == 2:
             if not quaternions:
                 print("\n")
