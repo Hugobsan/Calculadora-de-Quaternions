@@ -80,7 +80,7 @@ def main():
                         if parte == quaternion.nome:
                             quat_operados.append(quaternion)
                     if parte.isnumeric():
-                        quat_operados.append(Quaternion("temp", float(parte), float(parte), float(parte), float(parte)))
+                        quat_operados.append(parte)
                     if parte in operadores:
                         operador = parte
                 resultado = Operacao(quat_operados[0], operador, quat_operados[1])

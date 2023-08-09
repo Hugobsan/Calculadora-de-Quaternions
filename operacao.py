@@ -10,7 +10,11 @@ class Operacao:
         ##verifica tipo de serf.valor
         if type(self.valor) != Quaternion and self.valor.isnumeric():
             valor = int(self.valor)
-            new_quaternion = Quaternion('t', valor, valor, valor, valor)
+            if self.operador == '+' or self.operador == '-':
+                new_quaternion = Quaternion('r', valor, 0, 0, 0)
+
+            elif self.operador == '*' or self.operador == '/' :
+                new_quaternion = Quaternion('r', valor, valor, valor, valor)
         else :
             new_quaternion = self.valor
         
