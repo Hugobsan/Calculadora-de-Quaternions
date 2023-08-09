@@ -6,9 +6,9 @@ class Operacao:
         self.operador = operador
         self.valor = valor
     
-    def calcular():
-        ##caso valor seja um numero
-        if self.valor.isnumeric():
+    def calcular(self):
+        ##verifica tipo de serf.valor
+        if type(self.valor) != Quaternion and self.valor.isnumeric():
             valor = int(self.valor)
             new_quaternion = Quaternion('t', valor, valor, valor, valor)
         else :

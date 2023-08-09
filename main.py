@@ -2,12 +2,16 @@ from quaternion import Quaternion
 from operacao import Operacao
 
 def callMenu():
-    print("\nMenu de Opções:")
+    print("-"*50)
+    print("Menu de Opções:")
+    print("\n")
     print("1. Definir Novo Quaternion")
-    print("2. Selecionar Quatérnion")
-    print("3. Exibir todos os Quaternions")
+    print("2. Exibir Quaternion")
+    print("3. Listar Quaternions")
     print("4. Operação Personalizada")
     print("5. Sair")
+    print("-"*50)
+    print("\n")
 
     return int(input("Escolha uma opção: "))
 
@@ -26,9 +30,9 @@ def main():
             d = float(input("Digite o valor de dk: "))
             
             quaternions.append(Quaternion(nome, a, b, c, d))
-
-            print("Quaternion definido!")
-            print(quaternions[-1].__str__() + "\n")
+            print("\n")
+            print("Quaternion definido:")
+            print("\n" + quaternions[-1].__str__() + "\n")
         elif choice == 2:
             if not quaternions:
                 print("\n")
@@ -43,10 +47,10 @@ def main():
                         print(quaternion.__str__() + "\n")
                         print("Módulo: " + str(quaternion.modulo()) + "\n")
                         print("Conjugado: " + quaternion.conjugado().__str__() + "\n")
-                        print(quaternion.nome+"*i: " + quaternion.q_multi_i().__str__() + "\n")
-                        print(quaternion.nome+"*j: " + quaternion.q_multi_j().__str__() + "\n")
-                        print(quaternion.nome+"*k: " + quaternion.q_multi_k().__str__() + "\n")
-                        print("-"*50)
+                        print(quaternion.q_multi_i().__str__() + "\n")
+                        print(quaternion.q_multi_j().__str__() + "\n")
+                        print(quaternion.q_multi_k().__str__() + "\n")
+                        break
                     else:
                         print("Quaternion não encontrado.")
         elif choice == 3:
@@ -54,6 +58,9 @@ def main():
                 print("\n")
                 print("Defina pelo menos um quaternion primeiro.")
             else:
+                print('-'*50)
+                print("\n")
+                print("Quaternions definidos:")
                 print("\n")
                 for quaternion in quaternions:
                     print(quaternion.__str__() + "\n")
@@ -65,8 +72,21 @@ def main():
                 print("\n")
                 operacao = input("Digite a equação a ser realizada: ")
                 partes = operacao.split()
-                contador = 0
+                operadores = ["+", "-", "*", "/"]
+                quat_operados = []
                 
+                for parte in partes:
+                    for quaternion in quaternions:
+                        if parte == quaternion.nome:
+                            quat_operados.append(quaternion)
+                    if parte.isnumeric():
+                        quat_operados.append(Quaternion("temp", float(parte), float(parte), float(parte), float(parte)))
+                    if parte in operadores:
+                        operador = parte
+                resultado = Operacao(quat_operados[0], operador, quat_operados[1])
+                print("\n")
+                print("Resultado da operação: " + resultado.calcular().__str__())
+
         elif choice == 5:
             print("\n")
             print("Saindo...")
@@ -75,4 +95,5 @@ def main():
             print("Opção inválida. Escolha novamente.")
 
 if __name__ == "__main__":
+    print("Bem vindo ao programa de Quaternions!\n")
     main()
