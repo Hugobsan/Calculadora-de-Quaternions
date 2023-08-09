@@ -38,9 +38,15 @@ def main():
                 for quaternion in quaternions:
                     if quaternion.nome == nome:
                         print("\n")
+                        print("-"*50)
                         print(f"Quaternion {nome} encontrado:"+ "\n")
                         print(quaternion.__str__() + "\n")
-                        break
+                        print("Módulo: " + str(quaternion.modulo()) + "\n")
+                        print("Conjugado: " + quaternion.conjugado().__str__() + "\n")
+                        print(quaternion.nome+"*i: " + quaternion.q_multi_i().__str__() + "\n")
+                        print(quaternion.nome+"*j: " + quaternion.q_multi_j().__str__() + "\n")
+                        print(quaternion.nome+"*k: " + quaternion.q_multi_k().__str__() + "\n")
+                        print("-"*50)
                     else:
                         print("Quaternion não encontrado.")
         elif choice == 3:
@@ -60,10 +66,7 @@ def main():
                 operacao = input("Digite a equação a ser realizada: ")
                 partes = operacao.split()
                 contador = 0
-
-                for parte in partes:
-                    if contador == 0:
-                        if 
+                
         elif choice == 5:
             print("\n")
             print("Saindo...")

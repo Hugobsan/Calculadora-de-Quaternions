@@ -7,8 +7,12 @@ class Operacao:
         self.valor = valor
     
     def calcular():
-        ##caso a operação seja de quatérnion/escalar
-        new_quaternion = Quaternion('t', valor, valor, valor, valor)
+        ##caso valor seja um numero
+        if self.valor.isnumeric():
+            valor = int(self.valor)
+            new_quaternion = Quaternion('t', valor, valor, valor, valor)
+        else :
+            new_quaternion = self.valor
         
         if self.operador == '+':
             a = self.quaternion.a + new_quaternion.a
