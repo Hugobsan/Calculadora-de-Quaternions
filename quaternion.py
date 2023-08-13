@@ -16,10 +16,10 @@ class Quaternion:
 
     # Retorna uma string representando o quaternion
     def __str__(self):
-        a = int(self.a) if self.a.is_integer() else self.a
-        b = int(self.b) if self.b.is_integer() else self.b
-        c = int(self.c) if self.c.is_integer() else self.c
-        d = int(self.d) if self.d.is_integer() else self.d
+        a = self.a
+        b = self.b
+        c = self.c
+        d = self.d
 
         a_str = a
         b_str = f"- {-b}" if b < 0 else f"+ {b}"

@@ -24,17 +24,40 @@ def main():
         if choice == 1:
             reserved_keys = ['i', 'j', 'k', 'm', 'c', 'v']
             print("\n")
-            nome  = input("Como chamaremos o novo quaternion? ")
+            equacao = input("Insira o quaternion (ex: p = 1 + 2i + 3j - 4k): ")
+            # separando o nome do quaternion
+            nome, valores_str = equacao.split("=")
+            nome = nome.strip()
+
             if nome in reserved_keys:
                 print("\n")
                 print("Nome inválido. Escolha outro nome.")
                 continue
-            a = float(input("Digite o valor de a: "))
-            b = float(input("Digite o valor de bi: "))
-            c = float(input("Digite o valor de cj: "))
-            d = float(input("Digite o valor de dk: "))
             
-            new_q = Quaternion(nome, a, b, c, d)
+            # separando os valores do quaternion
+            valores = valores_str.strip().split(" ")
+
+            a = valores[0]
+            b = ""
+            c = ""
+            d = ""
+
+            for valor in valores[2:]:
+                if 'i' in valor:
+                    b = valor.replace("i", "")
+                elif 'j' in valor:
+                    c = valor.replace("j", "")
+                elif 'k' in valor:
+                    d = valor.replace("k", "")
+
+            if valores[1] == "-":
+                b = "-" + b
+            if valores[3] == "-":
+                c = "-" + c
+            if valores[5] == "-":
+                d = "-" + d
+
+            new_q = Quaternion(nome, float(a), float(b), float(c), float(d))
             
             quaternions.append(new_q)
             quaternions.append(new_q.q_multi_i())
@@ -45,7 +68,6 @@ def main():
             quaternions.append(new_q.k_multi_q())
             quaternions.append(new_q.conjugado())
             quaternions.append(new_q.vetorial())
-
 
             print("\n")
             print("Quaternions definidos:")

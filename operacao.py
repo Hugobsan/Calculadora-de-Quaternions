@@ -8,7 +8,7 @@ class Operacao:
     
     def calcular(self):
         ##verifica tipo de serf.valor
-        if type(self.valor) != Quaternion and self.valor.isnumeric():
+        if type(self.valor) != Quaternion:
             valor = int(self.valor)
             if self.operador == '+' or self.operador == '-':
                 new_quaternion = Quaternion('r', valor, 0, 0, 0)
